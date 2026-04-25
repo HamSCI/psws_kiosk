@@ -16,3 +16,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Bug fix
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 839ee05
+
+## [2026-04-25 13:31 EDT]
+- **Tool**: Claude (Anthropic), claude-opus-4-7
+- **Session Purpose**: Align template with the `.claude/` folder anatomy described in https://blog.dailydoseofds.com/p/anatomy-of-the-claude-folder — gitignore the personal-override file and scope language-specific rules to relevant file types so they don't load when not applicable.
+- **Sections/Files Affected**: `.gitignore` (added `CLAUDE.local.md`), `.claude/rules/latex-writing.md` (added `paths:` frontmatter scoping to `.tex`/`.bib`/`.cls`/`.sty`), `.claude/rules/python-code.md` (added `paths:` frontmatter scoping to `.py`/`pyproject.toml`/`requirements*.txt`)
+- **Nature of Contribution**: Configuration / scaffolding refinement
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: [fill in after committing]

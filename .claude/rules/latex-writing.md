@@ -1,3 +1,11 @@
+---
+paths:
+  - "**/*.tex"
+  - "**/*.bib"
+  - "**/*.cls"
+  - "**/*.sty"
+---
+
 # LaTeX Writing Rules
 *Delete this file if your project does not include LaTeX writing.*
 

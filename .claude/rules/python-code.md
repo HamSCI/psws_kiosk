@@ -1,3 +1,11 @@
+---
+paths:
+  - "**/*.py"
+  - "pyproject.toml"
+  - "requirements.txt"
+  - "requirements*.txt"
+---
+
 # Python Code Rules
 *Delete this file if your project does not include Python code.*
 
