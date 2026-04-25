@@ -23,4 +23,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Sections/Files Affected**: `.gitignore` (added `CLAUDE.local.md`), `.claude/rules/latex-writing.md` (added `paths:` frontmatter scoping to `.tex`/`.bib`/`.cls`/`.sty`), `.claude/rules/python-code.md` (added `paths:` frontmatter scoping to `.py`/`pyproject.toml`/`requirements*.txt`)
 - **Nature of Contribution**: Configuration / scaffolding refinement
 - **Human Review Status**: Reviewed and verified
-- **Git Hash**: [fill in after committing]
+- **Git Hash**: e229ba5
