@@ -7,7 +7,7 @@ This repository builds and manages a public-display kiosk system for the HamSCI 
 **PI**: Nathaniel A. Frissell, W2NAF — University of Scranton
 **Collaborators**: University of Scranton, University of Alabama, New Jersey Institute of Technology, Case Western Reserve University, Dartmouth College, MIT Haystack Observatory, and others; TAPR, Frankford Radio Club, and community volunteers
 **Funder**: NSF AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, OPP-2332427; NASA 80NSSC23K1322, 80NSSC25K7026, 80NSSC26K0051; Frankford Radio Club; ARDC
-**Project period**: TBD
+**Project period**: Ongoing
 
 ## Project Goal
 
