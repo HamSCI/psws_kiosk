@@ -20,6 +20,10 @@ Actual credentials, SSH keys, and private runbooks live in the private companion
 
 The public repo holds `.example` config templates; real values go in the ops repo.
 
+## Backups
+
+Linode automatic backups (whole-disk) are enabled on `meshcentral.hamsci.org`. Since this Linode is already isolated from HamSCI infrastructure, this satisfies the failure-domain independence requirement. No separate `meshcentral-data/` backup mechanism needed unless the server gains additional services or starts storing large recordings.
+
 ## Open Questions
 
 - [ ] Verify `vpn.hamsci.org:46005/radio.html` is reachable from public internet (test from cellular or unrelated VPS).
