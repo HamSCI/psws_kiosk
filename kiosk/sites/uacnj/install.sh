@@ -63,6 +63,9 @@ while true; do
         ${URL_TOP}
     sleep 5
 done &
+
+# MeshCentral interactive agent — runs in user X session for live screen capture
+/usr/local/mesh_services/meshagent/meshagent -connect &
 EOF
 
 chown ${KIOSK_USER}:${KIOSK_USER} /home/${KIOSK_USER}/.config/openbox/autostart
