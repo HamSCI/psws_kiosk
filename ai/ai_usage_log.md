@@ -71,3 +71,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Configuration, documentation
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 9ffc089
+
+## [2026-05-03 16:58 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Built the educational slideshow and split-screen layout for the kiosk using local nginx. Drafted slide content (welcome → ionosphere → screen explanations → why it matters → HamSCI/UACNJ → acknowledgments → partners). Swapped display assignments so live data is on the top monitor and the slideshow on the bottom. Bumped slide text size +30%. Extracted HamSCI branding assets from docs/uacnj_kiosk_slides.pptx (banner image, partner university logos, funder logos), pinned the HamSCI banner across the bottom of every slide to match the PPTX slide master, replaced the text-only partner-institutions slide with a real logo grid, and added a funder logo strip on the acknowledgments slide. Fixed the banner-repeats-the-logo problem by anchoring the image once on the left and filling the rest with a CSS linear-gradient sampled to match the banner's right-edge colors.
+- **Sections/Files Affected**: `kiosk/base/install.sh` (nginx, x11vnc), `kiosk/base/www/split.html` (new), `kiosk/sites/uacnj/install.sh` (deploy www, swap displays, build split URL with python urlencode), `kiosk/sites/uacnj/www/slides.html` (new slideshow), `kiosk/sites/uacnj/www/img/*` (15 logo/banner assets extracted from PPTX)
+- **Nature of Contribution**: Code generation, design, asset extraction, debugging
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 0ba1d2a, 4118720, 38ae62d, 7b3c7ae, b5207ed
