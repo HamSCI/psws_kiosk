@@ -24,7 +24,7 @@ RES_BOTTOM="1920x1080"
 
 URL_TOP="https://uacnj.kd3ald.com"
 # TODO: restore to http://vpn.hamsci.org:46005/radio.html once that URL is confirmed publicly reachable
-URL_BOTTOM="https://uacnj.kd3ald.com"
+URL_BOTTOM="https://hamsci.org"
 # --------------------------------------------------------------
 
 # Derive the Y offset for the bottom monitor from the top monitor's height
