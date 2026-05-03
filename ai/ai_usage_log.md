@@ -99,3 +99,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Content editing, layout iteration, asset acquisition
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 642bcb9, 9fc6ea8, 0de8292, 6150b8b, ed2e559, 3869e80, 8f913e8
+
+## [2026-05-03 19:11 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Cleaned up the UACNJ logo (the version on uacnj.org rendered too faint/grayscale on the dark slide background) by running it through ImageMagick's threshold filter at 85% to produce a crisp pure-black-and-white version with legible text around the ring. Also tightened slide 7 (Acknowledgments): removed Frankford Radio Club from the funder strip since it's already a community partner on slide 8, and enlarged the remaining funder logos (NSF, NASA, ARDC) significantly — bumped max dimensions and gave each img `flex: 1` so they share the strip's full width instead of leaving large horizontal gaps.
+- **Sections/Files Affected**: `kiosk/sites/uacnj/www/img/uacnj.png` (B&W threshold), `kiosk/sites/uacnj/www/slides.html` (slide 7 funder strip cleanup + sizing)
+- **Nature of Contribution**: Image processing, layout polish
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 7da3d4a, 91c9c6d, f94f00b
