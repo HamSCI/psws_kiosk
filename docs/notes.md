@@ -27,7 +27,7 @@ The public repo holds `.example` config templates; real values go in the ops rep
 - [ ] Confirm whether UACNJ displays are touchscreens — affects Chromium flags and xinput mapping.
 - [ ] Determine actual xrandr output names on the installed hardware before finalizing autostart.
 - [ ] Decide Linode tier: Nanode (1 GB, ~$5/mo) vs. 2 GB (~$12/mo) — upgrade if other HamSCI services will co-host.
-- [ ] Choose deployment workflow for cloning to additional kiosks: Clonezilla image vs. Ansible playbook from base Debian.
+- [ ] Choose deployment workflow for cloning to additional kiosks: Clonezilla image vs. Ansible playbook from base Ubuntu.
 
 ## Display URLs (UACNJ)
 

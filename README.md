@@ -4,7 +4,7 @@ A portable, site-agnostic kiosk platform for displaying live [HamSCI Personal Sp
 
 ## What it does
 
-Each kiosk is a BeeLink mini PC running Debian 12 with two stacked 22" monitors:
+Each kiosk is a BeeLink mini PC running Ubuntu 24.04 LTS with two stacked 22" monitors:
 
 - **Top monitor** — PSWS Contesting DX Dashboard: live WSPR/FT8 multi-band spots (`https://uacnj.kd3ald.com`)
 - **Bottom monitor** — KA9Q-Web SDR: real-time 0.1–64 MHz HF spectrum waterfall (`http://vpn.hamsci.org:46005/radio.html`)
