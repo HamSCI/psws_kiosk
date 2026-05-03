@@ -80,3 +80,13 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Code generation, design, asset extraction, debugging
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 0ba1d2a, 4118720, 38ae62d, 7b3c7ae, b5207ed
+
+## [2026-05-03 17:43 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Made the kiosk's virtual monitor layout match the physical (stacked) layout via /etc/X11/xorg.conf.d Monitor sections, avoiding the runtime-xrandr signal-loss bug. Adjusted for new symmetric FHD test setup (HDMI=bottom, DP=top, both 1920×1080) so there's no width mismatch or dead zone, which also fixed a cursor-wraparound symptom. Swapped Chrome window assignments so the educational slideshow is on the top monitor and the live data (SDR + dashboard split) is on the bottom; updated slide text from "screen above" → "screen below" to match. Iterated on slideshow typography (130% → 160% → 200% body, with hero/title shrunk so the welcome slide fits), removed the corner site-label, reordered the partner-institutions logo grid (Scranton, then NJIT, then the rest), and dropped the trailing "Visit hamsci.org" line on slide 6 that was getting cut off. Off-repo: set up uacnj-kiosk.hamsci.org as a 301 redirect to the MeshCentral sharing URL — created a dedicated Apache vhost (rather than touching the Drupal hamsci.org config) and obtained a Let's Encrypt cert so <https://uacnj-kiosk.hamsci.org> also works.
+- **Sections/Files Affected**: `kiosk/sites/uacnj/install.sh` (xorg.conf monitor layout, FHD resolutions, swapped Chrome windows), `kiosk/sites/uacnj/www/slides.html` (text size iterations, "screen below" wording, removed site-label divs and CSS, reordered partner logos, removed trailing hamsci.org line), `CLAUDE.md` (matching collaborator order)
+- **Off-repo changes**: New Apache vhost `/etc/apache2/sites-available/003-uacnj-kiosk.hamsci.org.conf` on hamsci.org server with `Redirect 301` to MeshCentral sharing URL; certbot-issued cert at `/etc/letsencrypt/live/uacnj-kiosk.hamsci.org/`
+- **Nature of Contribution**: Configuration, CSS/HTML iteration, system administration
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 0a10948, 730d2f5, c516029, 61375a1, 191b30c, 6f75031, 5845f29, dc3f7e8, 7f75a7a, 463d91b
