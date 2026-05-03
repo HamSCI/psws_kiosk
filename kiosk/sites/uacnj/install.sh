@@ -40,14 +40,32 @@ cp "$(dirname "$0")/www/slides.html" /var/www/html/slides.html
 cp "$(dirname "$0")/../../base/www/split.html" /var/www/html/split.html
 cp -r "$(dirname "$0")/www/img/." /var/www/html/img/
 
+echo "=== Writing X11 monitor layout (stacked vertically to match physical layout) ==="
+# Physical layout: ${DISPLAY_TOP} sits physically above ${DISPLAY_BOTTOM}.
+# We position monitors via xorg.conf Monitor sections so the layout is set when the
+# X server starts (rather than at runtime via xrandr, which causes ${DISPLAY_TOP}
+# to lose signal on this AMD hardware).
+cat > /etc/X11/xorg.conf.d/30-monitor-layout.conf << EOF
+# Position the displays vertically so the virtual layout matches the physical one
+# (top monitor above the bottom monitor). Without this, the AMD driver places them
+# side-by-side at virtual coords (0,0) and (${BOTTOM_WIDTH},0) — which doesn't match
+# how a visitor sees the screens stacked on the wall.
+Section "Monitor"
+    Identifier "${DISPLAY_TOP}"
+    Option     "Position" "0 0"
+EndSection
+
+Section "Monitor"
+    Identifier "${DISPLAY_BOTTOM}"
+    Option     "Position" "0 ${TOP_HEIGHT}"
+    Option     "Primary"  "true"
+EndSection
+EOF
+
 echo "=== Writing Openbox autostart for UACNJ ==="
-# The amdgpu driver defaults to side-by-side: DISPLAY_BOTTOM (DisplayPort-0)
-# at virtual 0,0 and DISPLAY_TOP (HDMI-A-0) at virtual BOTTOM_WIDTH,0.
-# We do NOT run xrandr — reconfiguring HDMI-A-0's position kills its signal
-# on this hardware. Chrome windows are placed at the default virtual coords.
-#
-# Top monitor:    split iframe page — SDR waterfall left, dashboard right (live data at eye level)
-# Bottom monitor: educational slideshow served by local nginx
+# Stacked virtual layout (after the xorg.conf.d above is applied):
+#   ${DISPLAY_TOP}    @ (0, 0)            — physical top    — live data
+#   ${DISPLAY_BOTTOM} @ (0, ${TOP_HEIGHT}) — physical bottom — educational slideshow
 SPLIT_URL="http://localhost/split.html?left=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_BOTTOM}")&right=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_TOP}")"
 
 cat > /home/${KIOSK_USER}/.config/openbox/autostart << EOF
@@ -56,23 +74,23 @@ xset s off -dpms
 xset s noblank
 unclutter -idle 0.5 -root &
 
-# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — educational slideshow
+# Physical top monitor (${DISPLAY_TOP}, virtual 0,0) — split: SDR left, dashboard right
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
-        --window-position=0,0 --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
-        --user-data-dir=/home/${KIOSK_USER}/.chrome-bottom \
-        http://localhost/slides.html
+        --window-position=0,0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
+        --user-data-dir=/home/${KIOSK_USER}/.chrome-top \
+        "${SPLIT_URL}"
     sleep 5
 done &
 
-# Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — split: SDR left, dashboard right
+# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,${TOP_HEIGHT}) — educational slideshow
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
-        --window-position=${BOTTOM_WIDTH},0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
-        --user-data-dir=/home/${KIOSK_USER}/.chrome-top \
-        "${SPLIT_URL}"
+        --window-position=0,${TOP_HEIGHT} --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
+        --user-data-dir=/home/${KIOSK_USER}/.chrome-bottom \
+        http://localhost/slides.html
     sleep 5
 done &
 
