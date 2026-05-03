@@ -14,12 +14,11 @@ KIOSK_USER="kiosk"
 # --- Update these to match `xrandr` output on this hardware ---
 # Output names when using xserver-xorg-video-amdgpu driver (required for
 # dual-monitor on this hardware — modesetting driver only drives one output).
-# Test setup (home): HDMI-A-0=1680x1050 (physical top), DisplayPort-0=1920x1080 (physical bottom)
-# Production (UACNJ site): both monitors expected to support 1920x1080 — update
-# all four variables after running `xrandr` on the site hardware.
-DISPLAY_TOP="HDMI-A-0"
-RES_TOP="1680x1050"
-DISPLAY_BOTTOM="DisplayPort-0"
+# Test setup (home, both FHD): DisplayPort-0=1920x1080 (physical top), HDMI-A-0=1920x1080 (physical bottom)
+# Production (UACNJ site): both monitors 1920x1080 — verify output names with `xrandr` on site.
+DISPLAY_TOP="DisplayPort-0"
+RES_TOP="1920x1080"
+DISPLAY_BOTTOM="HDMI-A-0"
 RES_BOTTOM="1920x1080"
 
 URL_TOP="http://192.168.11.202:5000/"
