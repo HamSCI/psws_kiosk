@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HamSCI Personal Space Weather Station — UACNJ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a1628;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ── Slide container ── */
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 72px 64px;
+            opacity: 0;
+            transition: opacity 0.9s ease-in-out;
+            pointer-events: none;
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ── Header ── */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 18px;
+            margin-bottom: 36px;
+            border-bottom: 2px solid #c41230;
+        }
+        .hamsci-wordmark {
+            font-size: 1.6em;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #c41230;
+        }
+        .hamsci-wordmark span {
+            color: #fff;
+            font-weight: 300;
+        }
+        .site-label {
+            text-align: right;
+            font-size: 0.82em;
+            line-height: 1.5;
+            color: #6b8099;
+        }
+
+        /* ── Titles ── */
+        .slide-title {
+            font-size: 2.2em;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 28px;
+            color: #fff;
+        }
+        .slide-title em {
+            font-style: normal;
+            color: #c41230;
+        }
+
+        /* ── Body text ── */
+        .slide-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.2em;
+            line-height: 1.75;
+            color: #c8d8e8;
+        }
+        .slide-body p { margin-bottom: 18px; }
+        .slide-body strong { color: #fff; }
+
+        /* ── Bullet list ── */
+        .slide-body ul {
+            list-style: none;
+            margin: 8px 0 18px;
+        }
+        .slide-body li {
+            padding: 7px 0 7px 32px;
+            position: relative;
+        }
+        .slide-body li::before {
+            content: '▸';
+            color: #c41230;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ── Hero / big-statement slides ── */
+        .slide.hero .slide-body {
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .slide.hero .hero-text {
+            font-size: 2em;
+            font-weight: 300;
+            line-height: 1.5;
+            max-width: 820px;
+        }
+        .slide.hero .hero-sub {
+            margin-top: 28px;
+            font-size: 1em;
+            color: #6b8099;
+        }
+
+        /* ── Acknowledgments: tighter text ── */
+        .slide.ack .slide-body {
+            font-size: 0.95em;
+            line-height: 1.65;
+        }
+        .grant-note {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #1e3050;
+            font-size: 0.85em;
+            color: #6b8099;
+        }
+
+        /* ── Progress bar ── */
+        #progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 0;
+            background: #c41230;
+        }
+
+        /* ── Slide counter ── */
+        #slide-counter {
+            position: fixed;
+            bottom: 14px;
+            right: 22px;
+            font-size: 0.78em;
+            color: #2a4060;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slides">
+
+    <!-- ── Slide 1: Welcome ── -->
+    <div class="slide hero active">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-body">
+            <div class="hero-text">
+                You're looking at <strong>live radio signals</strong><br>
+                traveling through Earth's upper atmosphere —<br>
+                captured right here at UACNJ, right now.
+            </div>
+            <div class="hero-sub">Keep reading to learn what you're seeing!</div>
+        </div>
+    </div>
+
+    <!-- ── Slide 2: The Ionosphere ── -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title">Earth has a <em>natural radio mirror</em> in the sky</div>
+        <div class="slide-body">
+            <p>The <strong>ionosphere</strong> is a layer of electrically charged gas stretching from about 60 to 1,000 km above Earth's surface. The Sun's ultraviolet and X-ray radiation ionizes the upper atmosphere, and those charged particles reflect certain radio waves back toward Earth — making long-distance radio communication possible.</p>
+            <ul>
+                <li>Solar flares and geomagnetic storms shake up the ionosphere</li>
+                <li>Those disturbances can disrupt GPS signals, aviation radio, and power grids</li>
+                <li>The very same events that paint the sky with auroras also change how radio waves travel around the world</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ── Slide 3: Top-right screen ── -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title"><em>Bottom-right screen:</em> A live map of radio signals</div>
+        <div class="slide-body">
+            <p>Every dot on that map is a real radio signal that reached the UACNJ antenna from somewhere around the world, just moments ago. The signals use a mode called <strong>WSPR</strong> (pronounced "whisper") — Weak Signal Propagation Reporter — designed specifically to travel as far as possible using just a tiny amount of power.</p>
+            <ul>
+                <li>Amateur radio operators around the globe transmit these signals automatically, 24 hours a day</li>
+                <li>When the ionosphere is healthy and calm, signals arrive from far and wide</li>
+                <li>During a solar storm, the pattern shifts — some paths open up, others go dark</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ── Slide 4: Bottom-left screen ── -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title"><em>Bottom-left screen:</em> The HF radio spectrum, live</div>
+        <div class="slide-body">
+            <p>This colorful "waterfall" display is showing <strong>every radio signal between 0 and 30 MHz</strong> — the entire shortwave and amateur radio band — all at once, streaming in real time.</p>
+            <ul>
+                <li><strong>Left to right:</strong> radio frequency, like sweeping across a very wide radio dial</li>
+                <li><strong>Top to bottom:</strong> time passing — the newest signals are always at the top</li>
+                <li><strong>Bright colors</strong> mean strong signals; dark areas are quiet</li>
+                <li>Try spotting individual radio stations, amateur contacts, and the faint background hiss of the ionosphere itself</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ── Slide 5: Why it matters ── -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title">Amateur radio operators as <em>citizen scientists</em></div>
+        <div class="slide-body">
+            <p>By collecting observations from hundreds of receiving stations around the world <strong>at the same moment</strong>, scientists can watch a solar disturbance ripple through the ionosphere in real time — a little like the way a network of seismometers tracks an earthquake spreading across the globe.</p>
+            <ul>
+                <li>The receiver here at UACNJ is one node in that worldwide network</li>
+                <li>Amateur radio operators voluntarily contribute millions of observations every single day</li>
+                <li>This data helps researchers forecast space weather, protect satellites, and keep astronauts safe</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ── Slide 6: HamSCI + UACNJ ── -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title">Where <em>radio</em> meets the <em>night sky</em></div>
+        <div class="slide-body">
+            <p><strong>HamSCI</strong> — the Ham Radio Science Citizen Investigation — is a collaboration between amateur radio operators and professional researchers at universities and observatories across North America. Together, they use the global amateur radio network as a scientific instrument to study the ionosphere and space weather.</p>
+            <ul>
+                <li>This Personal Space Weather Station (PSWS) was built and is maintained by the HamSCI team at the University of Scranton</li>
+                <li>UACNJ's quiet, dark-sky hilltop is ideal for both optical and radio astronomy — far from city noise and interference</li>
+                <li>Optical and radio astronomers have always been neighbors: both are simply studying the universe at different wavelengths</li>
+            </ul>
+            <p style="margin-top: 12px; font-size: 0.85em; color: #6b8099;">Want to learn more? Visit <strong style="color:#c8d8e8;">hamsci.org</strong></p>
+        </div>
+    </div>
+
+    <!-- ── Slide 7: Acknowledgments ── -->
+    <div class="slide ack">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title">Acknowledgments</div>
+        <div class="slide-body">
+            <p>We are deeply grateful to the worldwide amateur radio community — the volunteers whose observations make this science possible. Special thanks to the operators of the Reverse Beacon Network, the Weak Signal Propagation Reporting Network (WSPRNet), and PSKReporter.</p>
+            <p>The DXing/Contesting Dashboard was developed by Owen Ruzanski KD3ALD and Liam Miller KB3BVX, advised by Bud Trench AA3B, Ray Sokola K9RS, Andrew Rodland KC2G, Bob McGwier N4HY, and Nathaniel Frissell W2NAF.</p>
+            <div class="grant-note">
+                Major support provided by NSF Grants AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, OPP-2332427; NASA Grants 80NSSC23K1322, 80NSSC25K7026, 80NSSC26K0051; Frankford Radio Club; and ARDC.
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Slide 8: Partner Institutions ── -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="hamsci-wordmark">HamSCI <span>Personal Space Weather Station</span></div>
+            <div class="site-label">Paul H. Robinson Observatory<br>United Astronomy Clubs of New Jersey</div>
+        </div>
+        <div class="slide-title">HamSCI <em>Partner Institutions</em></div>
+        <div class="slide-body">
+            <ul>
+                <li>University of Scranton</li>
+                <li>University of Alabama</li>
+                <li>New Jersey Institute of Technology</li>
+                <li>Case Western Reserve University</li>
+                <li>Dartmouth College</li>
+                <li>MIT Haystack Observatory</li>
+            </ul>
+            <p style="margin-top: 24px; color: #6b8099; font-size: 0.9em;">
+                Community partners: TAPR &nbsp;·&nbsp; Frankford Radio Club &nbsp;·&nbsp; United Astronomy Clubs of New Jersey
+            </p>
+        </div>
+    </div>
+
+</div><!-- #slides -->
+
+<div id="progress-bar"></div>
+<div id="slide-counter"></div>
+
+<script>
+    const SLIDE_DURATION = 15000; // ms per slide
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let current = 0;
+    let startTime;
+    let raf;
+
+    function showSlide(n) {
+        slides[current].classList.remove('active');
+        current = ((n % slides.length) + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        document.getElementById('slide-counter').textContent =
+            (current + 1) + ' / ' + slides.length;
+        startTime = performance.now();
+        tick();
+    }
+
+    function tick(ts) {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function frame(ts) {
+            const elapsed = ts - startTime;
+            const pct = Math.min(elapsed / SLIDE_DURATION * 100, 100);
+            document.getElementById('progress-bar').style.width = pct + '%';
+            if (elapsed >= SLIDE_DURATION) {
+                showSlide(current + 1);
+            } else {
+                raf = requestAnimationFrame(frame);
+            }
+        });
+    }
+
+    // Kick off
+    document.getElementById('slide-counter').textContent = '1 / ' + slides.length;
+    startTime = performance.now();
+    tick();
+</script>
+
+</body>
+</html>

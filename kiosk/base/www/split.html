@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PSWS Split View</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            background: #000;
+        }
+        iframe {
+            flex: 1;
+            height: 100%;
+            border: none;
+        }
+        #left { border-right: 2px solid #1a2a3a; }
+    </style>
+</head>
+<body>
+    <iframe id="left"  src="" allow="autoplay"></iframe>
+    <iframe id="right" src="" allow="autoplay"></iframe>
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        document.getElementById('left').src  = p.get('left')  || '';
+        document.getElementById('right').src = p.get('right') || '';
+    </script>
+</body>
+</html>

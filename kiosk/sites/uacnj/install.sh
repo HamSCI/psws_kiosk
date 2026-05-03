@@ -34,34 +34,44 @@ TOP_WIDTH="${RES_TOP%%x*}"
 BOTTOM_WIDTH="${RES_BOTTOM%%x*}"
 BOTTOM_HEIGHT="${RES_BOTTOM##*x}"
 
+echo "=== Deploying kiosk web content ==="
+mkdir -p /var/www/html
+cp "$(dirname "$0")/www/slides.html" /var/www/html/slides.html
+cp "$(dirname "$0")/../../base/www/split.html" /var/www/html/split.html
+
 echo "=== Writing Openbox autostart for UACNJ ==="
 # The amdgpu driver defaults to side-by-side: DISPLAY_BOTTOM (DisplayPort-0)
 # at virtual 0,0 and DISPLAY_TOP (HDMI-A-0) at virtual BOTTOM_WIDTH,0.
 # We do NOT run xrandr — reconfiguring HDMI-A-0's position kills its signal
-# on this hardware. Chromium windows are placed at the default virtual coords.
+# on this hardware. Chrome windows are placed at the default virtual coords.
+#
+# Top monitor:    slideshow served by local nginx
+# Bottom monitor: split iframe page — SDR waterfall left, dashboard right
+SPLIT_URL="http://localhost/split.html?left=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_BOTTOM}")&right=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_TOP}")"
+
 cat > /home/${KIOSK_USER}/.config/openbox/autostart << EOF
 # Kiosk hygiene
 xset s off -dpms
 xset s noblank
 unclutter -idle 0.5 -root &
 
-# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — KA9Q-Web SDR waterfall
+# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — split: SDR left, dashboard right
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=0,0 --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
         --user-data-dir=/home/${KIOSK_USER}/.chrome-bottom \
-        ${URL_BOTTOM}
+        "${SPLIT_URL}"
     sleep 5
 done &
 
-# Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — PSWS Contesting DX Dashboard
+# Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — educational slideshow
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=${BOTTOM_WIDTH},0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
         --user-data-dir=/home/${KIOSK_USER}/.chrome-top \
-        ${URL_TOP}
+        http://localhost/slides.html
     sleep 5
 done &
 

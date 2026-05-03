@@ -16,6 +16,8 @@ apt-get install --no-install-recommends -y \
     openbox \
     unclutter \
     xserver-xorg-video-amdgpu \
+    x11vnc \
+    nginx \
     wget \
     gnupg
 
