@@ -23,7 +23,7 @@ DISPLAY_BOTTOM="DisplayPort-0"
 RES_BOTTOM="1920x1080"
 
 URL_TOP="https://uacnj.kd3ald.com"
-# TODO: restore to http://vpn.hamsci.org:46005/radio.html once that URL is confirmed publicly reachable
+# TODO: restore to http://vpn.hamsci.org:46005/radio.html once RX888 hardware issue is resolved (requires in-person site visit)
 URL_BOTTOM="https://hamsci.org"
 # --------------------------------------------------------------
 

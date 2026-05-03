@@ -26,7 +26,7 @@ Linode automatic backups (whole-disk) are enabled on `meshcentral.hamsci.org`. S
 
 ## Open Questions
 
-- [ ] Verify `vpn.hamsci.org:46005/radio.html` is reachable from public internet (test from cellular or unrelated VPS).
+- [ ] Restore bottom monitor URL to `http://vpn.hamsci.org:46005/radio.html` once RX888 hardware issue is resolved at UACNJ site (requires in-person visit). Port reachability is not the problem — the RX888 receiver itself needs attention.
 - [ ] Confirm BeeLink model and Linux hardware compatibility (Wi-Fi/audio chipset). Use Ethernet for kiosks regardless.
 - [ ] Confirm whether UACNJ displays are touchscreens — affects Chromium flags and xinput mapping.
 - [ ] Determine actual xrandr output names on the installed hardware before finalizing autostart.
