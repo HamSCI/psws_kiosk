@@ -1,47 +1,41 @@
-# {{PROJECT_NAME}}
+# PSWS Kiosk
 
 ## Project Overview
-{{ONE-PARAGRAPH PROJECT DESCRIPTION — what is being written or built, its purpose, and audience.}}
 
-**PI**: {{PI_NAME_AND_AFFILIATION}}
-**Collaborators**: {{COLLABORATORS}}
-**Funder**: {{FUNDER}}{{FUNDING_AMOUNT_OPTIONAL}}
-**Project period**: {{PROJECT_PERIOD}}
+This repository builds and manages a public-display kiosk system for the HamSCI Personal Space Weather Station (PSWS) HF Receiver deployed at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum, with the architecture designed to scale to additional outreach venues. Each kiosk is a BeeLink mini PC running Debian 12 with two stacked 22" monitors in fullscreen Chromium: the top monitor shows the PSWS Contesting DX Dashboard (live WSPR/FT8 multi-band spots from the UACNJ receiver), and the bottom monitor shows the KA9Q-Web SDR interface (real-time 0.1–64 MHz HF spectrum waterfall). A self-hosted MeshCentral server at `meshcentral.hamsci.org` provides centralized remote monitoring and management for the entire kiosk fleet.
+
+**PI**: Nathaniel A. Frissell, W2NAF — University of Scranton
+**Collaborators**: University of Scranton, University of Alabama, New Jersey Institute of Technology, Case Western Reserve University, Dartmouth College, MIT Haystack Observatory, and others; TAPR, Frankford Radio Club, and community volunteers
+**Funder**: NSF AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, OPP-2332427; NASA 80NSSC23K1322, 80NSSC25K7026, 80NSSC26K0051; Frankford Radio Club; ARDC
+**Project period**: TBD
 
 ## Project Goal
-{{PROJECT_GOAL — 1-3 sentences.}}
+
+Deploy a replicable public-facing kiosk system that displays live HamSCI ionospheric data at science outreach venues. The first deployment targets the UACNJ public observatory; subsequent kiosks can be provisioned from the same configuration. All kiosks are centrally managed via a dedicated MeshCentral server isolated from existing HamSCI infrastructure.
 
 ## Repository Structure
-This project starts from the `ai_project_template` scaffold. Add or remove top-level directories to match your project type. The scaffold expects:
 
-```
-{{REPO_NAME}}/
+```text
+psws_kiosk/
 ├── CLAUDE.md
 ├── README.md
 ├── .gitignore
-├── .gitmodules                   ← present only if you add submodules
 ├── .claude/
 │   ├── settings.json
 │   ├── commands/commit.md        ← /commit workflow
 │   └── rules/
 │       ├── ai-governance.md
-│       ├── latex-writing.md      ← delete if no LaTeX
-│       └── python-code.md        ← delete if no Python
+│       └── python-code.md
 ├── ai/
 │   └── ai_usage_log.md           ← mandatory AI session log
-└── {{PROJECT-SPECIFIC FOLDERS}}  ← e.g., manuscript/, src/, posters/, proposal/
+├── docs/
+│   └── hamsci-kiosk-project.md   ← architecture decisions and build plans
+├── kiosk/                        ← Debian config, Openbox autostart, systemd units
+└── server/                       ← MeshCentral setup and runbook
 ```
 
-## Submodules (optional)
-If your project includes submodules (e.g., an Overleaf manuscript or a separate code repo):
-1. Make changes and commit **inside** the submodule first
-2. Then commit the updated submodule pointer in this repo
-3. Always use `[AI-assisted]` prefix on commits made with AI assistance
-4. Ask before pushing to any remote
-
-The `/commit` workflow auto-detects submodules via `git submodule status`.
-
 ## AI Governance
+
 All AI-assisted work must comply with the policies in `.claude/rules/ai-governance.md`.
 Every substantive AI session must be logged in `ai/ai_usage_log.md` before committing.
 Use the `/commit` command to handle logging and committing in the correct order.

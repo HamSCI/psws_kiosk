@@ -21,24 +21,6 @@ env/
 .mypy_cache/
 .ruff_cache/
 
-# LaTeX build artifacts
-*.aux
-*.log
-*.out
-*.toc
-*.lof
-*.lot
-*.synctex.gz
-*.fls
-*.fdb_latexmk
-*.bbl
-*.bcf
-*.blg
-*.run.xml
-*.nav
-*.snm
-*.vrb
-
 # Claude Code local state
 .claude/settings.local.json
 CLAUDE.local.md

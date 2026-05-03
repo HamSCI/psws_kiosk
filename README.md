@@ -1,41 +1,27 @@
-# AI Project Template
+# PSWS Kiosk
 
-A starter scaffold for AI-assisted writing or coding projects in Dr. Nathaniel A. Frissell's (W2NAF) academic and HamSCI portfolio. The template enforces compliance with University of Scranton, HamSCI, NASA, and NSF policies on generative AI use, and provides a `/commit` workflow that logs every substantive AI session before committing.
+Public-display kiosk for the [HamSCI Personal Space Weather Station (PSWS) HF Receiver](https://hamsci.org/psws) deployed at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum. The kiosk makes the live data collected by the UACNJ PSWS receiver visible to museum visitors without requiring any interaction.
 
-The same scaffold supports:
-- **Writing projects** (papers, proposals, annual reports, theses) — typically with an `overleaf/` submodule
-- **Coding projects** (research software, dashboards, analysis pipelines) — flat or with one or more code submodules
-- **Mixed projects** — both, in any combination
+## What it does
 
-## Use as a GitHub Template
+Each kiosk is a BeeLink mini PC running Debian 12 with two stacked 22" monitors:
 
-```bash
-gh repo create my-new-project --template w2naf-academia/ai_project_template --private --clone
-```
+- **Top monitor** — PSWS Contesting DX Dashboard: live WSPR/FT8 multi-band spots (`https://uacnj.kd3ald.com`)
+- **Bottom monitor** — KA9Q-Web SDR: real-time 0.1–64 MHz HF spectrum waterfall (`http://vpn.hamsci.org:46005/radio.html`)
 
-or click **Use this template** on the GitHub repository page.
+Chromium runs in `--kiosk` mode with Openbox as the window manager. The system auto-starts on boot, restarts browser instances on crash, and reboots nightly to pick up security updates.
 
-## After Instantiation
+A self-hosted [MeshCentral](https://meshcentral.com/) server at `meshcentral.hamsci.org` provides centralized remote access and monitoring for all kiosks.
 
-1. **Replace placeholders.** Search the repo for `{{` and replace every `{{PLACEHOLDER}}` in `CLAUDE.md`, `.claude/rules/ai-governance.md`, and `ai/ai_usage_log.md`. Common placeholders:
-   - `{{PROJECT_NAME}}`, `{{PROJECT_TITLE}}`, `{{PROJECT_GOAL}}`, `{{PROJECT_PERIOD}}`
-   - `{{PI_NAME_AND_AFFILIATION}}`, `{{COLLABORATORS}}`, `{{FUNDER}}`, `{{FUNDING_AMOUNT_OPTIONAL}}`
-   - `{{REPO_NAME}}`
-2. **Prune optional rule files.** Delete the rule files that don't apply:
-   - `rm .claude/rules/latex-writing.md` if no LaTeX
-   - `rm .claude/rules/python-code.md` if no Python code
-3. **Add project-specific top-level folders** (e.g., `manuscript/`, `src/`, `posters/`, `proposal/`, `media/`).
-4. **Add submodules if needed.**
-   - Overleaf manuscript: `git submodule add https://git.overleaf.com/<id> overleaf`
-   - External code repo: `git submodule add git@github.com:org/repo.git <path>`
-5. **Customize `.claude/rules/ai-governance.md`** — fill in the `{{FUNDER}}`-specific expectations section, or delete it if the project is unfunded.
-6. **Commit and push** the instantiated project to its own GitHub repo.
+## Repository layout
 
-## What This Template Provides
+| Path | Contents |
+| ---- | -------- |
+| `kiosk/` | Debian config files, Openbox autostart, systemd units for browser watchdog |
+| `server/` | MeshCentral server setup, `config.json` template, runbook |
+| `docs/` | Architecture decisions, hardware notes, open questions |
+| `ai/` | AI usage log (required per HamSCI/Scranton/NSF/NASA AI policies) |
 
-- **`CLAUDE.md`** — top-level project instructions consumed automatically by Claude Code, with placeholders for project specifics.
-- **`.claude/rules/ai-governance.md`** — standing AI-use policies (Scranton, HamSCI, NASA, NSF) plus a funder-specific section.
-- **`.claude/commands/commit.md`** — the `/commit` slash command that logs the AI session, commits dirty submodules first, then commits the main repo. Auto-detects submodules.
-- **`ai/ai_usage_log.md`** — append-only log of every substantive AI-assisted session.
-- **`.gitignore`** — generic LaTeX + Python build artifacts.
-- **Optional rule files** for LaTeX writing and Python code, with "delete if unused" headers.
+## Acknowledgements
+
+HamSCI collaborators gratefully acknowledge funding from NSF AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, OPP-2332427; NASA grants 80NSSC23K1322, 80NSSC25K7026, and 80NSSC26K0051; Frankford Radio Club; and ARDC.
