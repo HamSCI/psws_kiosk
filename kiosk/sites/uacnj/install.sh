@@ -35,9 +35,10 @@ BOTTOM_WIDTH="${RES_BOTTOM%%x*}"
 BOTTOM_HEIGHT="${RES_BOTTOM##*x}"
 
 echo "=== Deploying kiosk web content ==="
-mkdir -p /var/www/html
+mkdir -p /var/www/html/img
 cp "$(dirname "$0")/www/slides.html" /var/www/html/slides.html
 cp "$(dirname "$0")/../../base/www/split.html" /var/www/html/split.html
+cp -r "$(dirname "$0")/www/img/." /var/www/html/img/
 
 echo "=== Writing Openbox autostart for UACNJ ==="
 # The amdgpu driver defaults to side-by-side: DISPLAY_BOTTOM (DisplayPort-0)
