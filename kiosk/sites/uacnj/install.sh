@@ -63,8 +63,8 @@ EOF
 
 echo "=== Writing Openbox autostart for UACNJ ==="
 # Stacked virtual layout (after the xorg.conf.d above is applied):
-#   ${DISPLAY_TOP}    @ (0, 0)            — physical top    — live data
-#   ${DISPLAY_BOTTOM} @ (0, ${TOP_HEIGHT}) — physical bottom — educational slideshow
+#   ${DISPLAY_TOP}    @ (0, 0)            — physical top    — educational slideshow
+#   ${DISPLAY_BOTTOM} @ (0, ${TOP_HEIGHT}) — physical bottom — live data
 SPLIT_URL="http://localhost/split.html?left=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_BOTTOM}")&right=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_TOP}")"
 
 cat > /home/${KIOSK_USER}/.config/openbox/autostart << EOF
@@ -73,23 +73,23 @@ xset s off -dpms
 xset s noblank
 unclutter -idle 0.5 -root &
 
-# Physical top monitor (${DISPLAY_TOP}, virtual 0,0) — split: SDR left, dashboard right
+# Physical top monitor (${DISPLAY_TOP}, virtual 0,0) — educational slideshow
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=0,0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
         --user-data-dir=/home/${KIOSK_USER}/.chrome-top \
-        "${SPLIT_URL}"
+        http://localhost/slides.html
     sleep 5
 done &
 
-# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,${TOP_HEIGHT}) — educational slideshow
+# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,${TOP_HEIGHT}) — split: SDR left, dashboard right
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=0,${TOP_HEIGHT} --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
         --user-data-dir=/home/${KIOSK_USER}/.chrome-bottom \
-        http://localhost/slides.html
+        "${SPLIT_URL}"
     sleep 5
 done &
 
