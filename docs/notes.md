@@ -13,6 +13,13 @@ Design decisions, open questions, and session notes for the psws_kiosk project.
 - **Separate `--user-data-dir` per Chromium instance** — required; second instance otherwise opens as a tab in the first.
 - **Portable site design** — shared base config in `kiosk/base/`, per-site overrides in `kiosk/sites/<name>/`. Deploying to a new venue requires only a new site config.
 
+## Secrets / Credentials
+
+Actual credentials, SSH keys, and private runbooks live in the private companion repo:
+**[HamSCI/psws_kiosk-ops](https://github.com/HamSCI/psws_kiosk-ops)** (restricted to project admins).
+
+The public repo holds `.example` config templates; real values go in the ops repo.
+
 ## Open Questions
 
 - [ ] Verify `vpn.hamsci.org:46005/radio.html` is reachable from public internet (test from cellular or unrelated VPS).
