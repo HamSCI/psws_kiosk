@@ -64,8 +64,8 @@ while true; do
     sleep 5
 done &
 
-# MeshCentral interactive agent — runs in user X session for live screen capture
-/usr/local/mesh_services/meshagent/meshagent -connect &
+# x11vnc — VNC server capturing the live X display; localhost only, access via SSH tunnel
+x11vnc -display :0 -localhost -nopw -forever -shared -noxdamage -bg -o /tmp/x11vnc.log
 EOF
 
 chown ${KIOSK_USER}:${KIOSK_USER} /home/${KIOSK_USER}/.config/openbox/autostart
