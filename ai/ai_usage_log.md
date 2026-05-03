@@ -35,3 +35,21 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Repository scaffolding / configuration
 - **Human Review Status**: Pending review
 - **Git Hash**: 70f2069
+
+## [2026-05-03 05:00 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Set up MeshCentral remote management server on Linode (install, Let's Encrypt TLS, SSH hardening, fail2ban, unattended-upgrades, firewall); install kiosk base OS stack on BeeLink (Ubuntu 24.04, X11, Openbox, amdgpu driver for dual-monitor); create UACNJ site-specific install script and autostart; debug dual-monitor display — diagnosed modesetting driver single-CRTC limitation, switched to xserver-xorg-video-amdgpu, updated xrandr output names, corrected monitor-to-output assignment, fixed Y-offset derivation.
+- **Sections/Files Affected**: `kiosk/base/install.sh`, `kiosk/sites/uacnj/install.sh`, `kiosk/sites/uacnj/README.md`, `docs/notes.md`, `server/config.json.example`
+- **Nature of Contribution**: Code generation, system configuration, debugging
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: a895f65–6a0da5b
+
+## [2026-05-03 12:52 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Diagnosed and resolved dual-monitor kiosk issue: identified that snap Chromium on Ubuntu 24.04 silently ignores --user-data-dir (remapping all instances to the same snap-confined profile), preventing two independent kiosk windows. Switched to Google Chrome (.deb from Google's apt repo), updated kiosk/base/install.sh and kiosk/sites/uacnj/install.sh, and verified both monitors display separate URLs.
+- **Sections/Files Affected**: `kiosk/base/install.sh`, `kiosk/sites/uacnj/install.sh`
+- **Nature of Contribution**: Debugging, code generation
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 186e070, 132528c
