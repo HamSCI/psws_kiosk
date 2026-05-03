@@ -90,3 +90,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Configuration, CSS/HTML iteration, system administration
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 0a10948, 730d2f5, c516029, 61375a1, 191b30c, 6f75031, 5845f29, dc3f7e8, 7f75a7a, 463d91b
+
+## [2026-05-03 18:57 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Iterated on slide content based on review feedback. Toned down the overstated "this data helps keep astronauts safe" line on slide 5 to a more honest "helps researchers better understand how the ionosphere responds to space weather." Updated slide 6 to credit both University of Scranton AND New Jersey Institute of Technology as the HamSCI team home institutions. On slide 8, moved Space Science Institute from "Community & Industry Partners" to "Universities & Research Institutes" (right after Case Western), then reorganized the universities grid into 4 columns × 2 rows so logos are larger; shortened cell aspect ratio (3:2 → 5:2) so everything fits the slide. On slide 7 (Acknowledgments), dropped the individual-name dashboard credits paragraph, and removed ARRL and DX Engineering from the funder strip (they're community partners, not funders, and already appear on slide 8). Added the UACNJ logo as the first community partner on slide 8 (logo fetched from uacnj.org).
+- **Sections/Files Affected**: `kiosk/sites/uacnj/www/slides.html` (slides 5, 6, 7, 8 text and logo grid layout), `kiosk/sites/uacnj/www/img/uacnj.png` (new asset)
+- **Nature of Contribution**: Content editing, layout iteration, asset acquisition
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 642bcb9, 9fc6ea8, 0de8292, 6150b8b, ed2e559, 3869e80, 8f913e8
