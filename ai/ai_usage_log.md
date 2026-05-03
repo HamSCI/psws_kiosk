@@ -108,3 +108,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Image processing, layout polish
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 7da3d4a, 91c9c6d, f94f00b
+
+## [2026-05-03 19:38 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Added five partner-institution logos (University of Scranton, NJIT, UACNJ, NSF, NASA, in that order) to the persistent HamSCI bottom banner that appears on every slide. Backed up the original banner image as hamsci-banner-original.png. Scaled the HamSCI banner image down to ~75% of banner height to free up horizontal room on the right, then arranged the five logos as white rounded "pills" in a flex row anchored to the right edge of the banner — chose the white-pill treatment because most of these logos are designed for white backgrounds and would look harsh placed directly on the dark blue banner.
+- **Sections/Files Affected**: `kiosk/sites/uacnj/www/slides.html` (banner CSS + logo HTML), `kiosk/sites/uacnj/www/img/hamsci-banner-original.png` (backup of original asset)
+- **Nature of Contribution**: Layout design, asset management
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 31bef5a
