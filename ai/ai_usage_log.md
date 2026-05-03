@@ -62,3 +62,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Debugging, system configuration, code generation
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: d9bc960
+
+## [2026-05-03 14:10 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Clarified that vpn.hamsci.org:46005 is unreachable due to an RX888 hardware fault (not a firewall/routing issue); updated open question in docs/notes.md and TODO comment in install.sh accordingly. Switched test URLs to the home LAN PSWS system (dashboard at 192.168.11.202:5000, WebSDR waterfall at 192.168.11.202:8081) for realistic end-to-end testing before the UACNJ site visit.
+- **Sections/Files Affected**: `kiosk/sites/uacnj/install.sh` (URL_TOP, URL_BOTTOM, comments), `docs/notes.md` (open question updated)
+- **Nature of Contribution**: Configuration, documentation
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 9ffc089
