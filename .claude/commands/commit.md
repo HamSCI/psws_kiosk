@@ -28,7 +28,7 @@ git submodule foreach 'git diff --stat'
 If `git submodule foreach` produces no output, the repo has no submodules — proceed without them.
 
 ### 3. Ask the user for session purpose
-Ask: "What was the purpose of this session?" and wait for the user's response.
+Draft a purpose of this session for the AI log. Show it to the user, and ask them to confirm.
 
 ### 4. Draft the AI usage log entry
 Use this format. Use the **actual running model ID** in the Tool field (e.g., `claude-opus-4-7`), not a placeholder.
