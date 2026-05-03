@@ -5,7 +5,7 @@
 This repository builds and manages a public-display kiosk system for the HamSCI Personal Space Weather Station (PSWS) HF Receiver deployed at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum, with the architecture designed to scale to additional outreach venues. Each kiosk is a BeeLink mini PC running Ubuntu 24.04 LTS with two stacked 22" monitors in fullscreen Chromium: the top monitor shows the PSWS Contesting DX Dashboard (live WSPR/FT8 multi-band spots from the UACNJ receiver), and the bottom monitor shows the KA9Q-Web SDR interface (real-time 0.1–64 MHz HF spectrum waterfall). A self-hosted MeshCentral server at `meshcentral.hamsci.org` provides centralized remote monitoring and management for the entire kiosk fleet.
 
 **PI**: Nathaniel A. Frissell, W2NAF — University of Scranton
-**Collaborators**: University of Scranton, University of Alabama, New Jersey Institute of Technology, Case Western Reserve University, Dartmouth College, MIT Haystack Observatory, and others; TAPR, Frankford Radio Club, United Astronomy Clubs of New Jersey (UACNJ), and community volunteers
+**Collaborators**: University of Scranton, New Jersey Institute of Technology, University of Alabama, Case Western Reserve University, Dartmouth College, MIT Haystack Observatory, and others; TAPR, Frankford Radio Club, United Astronomy Clubs of New Jersey (UACNJ), and community volunteers
 **Funder**: NSF AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, OPP-2332427; NASA 80NSSC23K1322, 80NSSC25K7026, 80NSSC26K0051; Frankford Radio Club; ARDC
 **Project period**: Ongoing
 
