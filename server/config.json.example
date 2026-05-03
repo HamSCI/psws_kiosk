@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "Cert": "meshcentral.hamsci.org",
+    "MongoDb": false,
+    "MongoDbCol": null,
+    "WANonly": true,
+    "minify": 1,
+    "port": 443,
+    "redirPort": 80,
+    "allowLoginToken": true,
+    "allowFraming": false,
+    "newAccounts": false
+  },
+  "domains": {
+    "": {
+      "title": "HamSCI MeshCentral",
+      "title2": "Kiosk Fleet Management",
+      "newAccounts": false,
+      "certUrl": "https://meshcentral.hamsci.org"
+    }
+  },
+  "smtp": {
+    "host": "YOUR_SMTP_HOST",
+    "port": 587,
+    "from": "meshcentral@hamsci.org",
+    "user": "YOUR_SMTP_USER",
+    "pass": "YOUR_SMTP_PASSWORD",
+    "tls": false
+  }
+}

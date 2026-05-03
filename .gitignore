@@ -21,6 +21,14 @@ env/
 .mypy_cache/
 .ruff_cache/
 
+# Secrets — never commit real credentials
+*.secret
+secrets/
+*.key
+*.pem
+config.local.*
+config.json
+
 # Claude Code local state
 .claude/settings.local.json
 CLAUDE.local.md
