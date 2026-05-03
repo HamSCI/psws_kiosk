@@ -12,12 +12,14 @@ set -euo pipefail
 KIOSK_USER="kiosk"
 
 # --- Update these to match `xrandr` output on this hardware ---
-# Current test setup (home): DP-1=1920x1080 (top), HDMI-1=1680x1050 (bottom)
+# Output names when using xserver-xorg-video-amdgpu driver (required for
+# dual-monitor on this hardware — modesetting driver only drives one output).
+# Current test setup (home): DisplayPort-0=1920x1080 (top), HDMI-A-0=1680x1050 (bottom)
 # Production (UACNJ site): both monitors expected to support 1920x1080 — re-run
-# `xrandr` on site hardware and update accordingly.
-DISPLAY_TOP="DP-1"
+# `xrandr` on site hardware and update RES_TOP/RES_BOTTOM accordingly.
+DISPLAY_TOP="DisplayPort-0"
 RES_TOP="1920x1080"
-DISPLAY_BOTTOM="HDMI-1"
+DISPLAY_BOTTOM="HDMI-A-0"
 RES_BOTTOM="1680x1050"
 
 URL_TOP="https://uacnj.kd3ald.com"

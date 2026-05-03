@@ -15,7 +15,19 @@ apt-get install --no-install-recommends -y \
     xinit \
     openbox \
     unclutter \
-    chromium-browser
+    chromium-browser \
+    xserver-xorg-video-amdgpu
+
+echo "=== Forcing amdgpu driver (modesetting only drives one output on this hardware) ==="
+mkdir -p /etc/X11/xorg.conf.d
+cat > /etc/X11/xorg.conf.d/20-amdgpu.conf << 'EOF'
+Section "Device"
+    Identifier  "AMD GPU"
+    Driver      "amdgpu"
+    Option      "TearFree" "true"
+    Option      "DRI" "3"
+EndSection
+EOF
 
 echo "=== Creating kiosk user ==="
 if ! id "$KIOSK_USER" &>/dev/null; then
