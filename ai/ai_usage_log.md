@@ -53,3 +53,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Debugging, code generation
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 186e070, 132528c
+
+## [2026-05-03 13:39 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Install and configure MeshCentral agent on the UACNJ kiosk for remote management; debug and resolve remote desktop (WebVNC) failure — identified that the AMD GPU does not update /dev/fb0 while X11 is active, making the agent's built-in screen capture unusable; installed x11vnc as the screen capture backend, added it to the Openbox autostart, and verified live dual-monitor view via SSH tunnel to localhost:5900.
+- **Sections/Files Affected**: `kiosk/sites/uacnj/install.sh` (x11vnc in autostart, meshagent interactive agent attempts removed)
+- **Nature of Contribution**: Debugging, system configuration, code generation
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: TBD
