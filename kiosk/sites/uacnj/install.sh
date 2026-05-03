@@ -46,18 +46,20 @@ unclutter -idle 0.5 -root &
 
 # Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — KA9Q-Web SDR waterfall
 while true; do
-    chromium-browser --kiosk --noerrdialogs --disable-infobars \
+    google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
+        --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=0,0 --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
-        --user-data-dir=/home/${KIOSK_USER}/.chromium-bottom \
+        --user-data-dir=/home/${KIOSK_USER}/.chrome-bottom \
         ${URL_BOTTOM}
     sleep 5
 done &
 
 # Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — PSWS Contesting DX Dashboard
 while true; do
-    chromium-browser --kiosk --noerrdialogs --disable-infobars \
+    google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
+        --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=${BOTTOM_WIDTH},0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
-        --user-data-dir=/home/${KIOSK_USER}/.chromium-top \
+        --user-data-dir=/home/${KIOSK_USER}/.chrome-top \
         ${URL_TOP}
     sleep 5
 done &

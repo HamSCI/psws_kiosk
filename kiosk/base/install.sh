@@ -15,8 +15,15 @@ apt-get install --no-install-recommends -y \
     xinit \
     openbox \
     unclutter \
-    chromium-browser \
-    xserver-xorg-video-amdgpu
+    xserver-xorg-video-amdgpu \
+    wget \
+    gnupg
+
+echo "=== Installing Google Chrome (non-snap; snap Chromium ignores --user-data-dir) ==="
+wget -q -O /tmp/google-chrome.deb \
+    https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt-get install --no-install-recommends -y /tmp/google-chrome.deb
+rm /tmp/google-chrome.deb
 
 echo "=== Forcing amdgpu driver (modesetting only drives one output on this hardware) ==="
 mkdir -p /etc/X11/xorg.conf.d
