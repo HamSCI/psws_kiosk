@@ -14,16 +14,17 @@ KIOSK_USER="kiosk"
 # --- Update these to match `xrandr` output on this hardware ---
 # Output names when using xserver-xorg-video-amdgpu driver (required for
 # dual-monitor on this hardware — modesetting driver only drives one output).
-# Current test setup (home): DisplayPort-0=1920x1080 (top), HDMI-A-0=1680x1050 (bottom)
+# Test setup (home): HDMI-A-0=1680x1050 (physical top), DisplayPort-0=1920x1080 (physical bottom)
 # Production (UACNJ site): both monitors expected to support 1920x1080 — re-run
-# `xrandr` on site hardware and update RES_TOP/RES_BOTTOM accordingly.
-DISPLAY_TOP="DisplayPort-0"
-RES_TOP="1920x1080"
-DISPLAY_BOTTOM="HDMI-A-0"
-RES_BOTTOM="1680x1050"
+# `xrandr` on site hardware and update all four variables accordingly.
+DISPLAY_TOP="HDMI-A-0"
+RES_TOP="1680x1050"
+DISPLAY_BOTTOM="DisplayPort-0"
+RES_BOTTOM="1920x1080"
 
 URL_TOP="https://uacnj.kd3ald.com"
-URL_BOTTOM="http://vpn.hamsci.org:46005/radio.html"
+# TODO: restore to http://vpn.hamsci.org:46005/radio.html once that URL is confirmed publicly reachable
+URL_BOTTOM="https://uacnj.kd3ald.com"
 # --------------------------------------------------------------
 
 echo "=== Writing Openbox autostart for UACNJ ==="
@@ -49,7 +50,7 @@ done &
 # Bottom monitor — KA9Q-Web SDR waterfall
 while true; do
     chromium-browser --kiosk --noerrdialogs --disable-infobars \
-        --window-position=0,1080 --window-size=${RES_BOTTOM/x/,} \
+        --window-position=0,${RES_TOP##*x} --window-size=${RES_BOTTOM/x/,} \
         --user-data-dir=/home/${KIOSK_USER}/.chromium-bottom \
         ${URL_BOTTOM}
     sleep 5
