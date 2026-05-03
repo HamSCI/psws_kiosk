@@ -1,6 +1,6 @@
 # PSWS Kiosk
 
-Public-display kiosk for the [HamSCI Personal Space Weather Station (PSWS) HF Receiver](https://hamsci.org/psws) deployed at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum. The kiosk makes the live data collected by the UACNJ PSWS receiver visible to museum visitors without requiring any interaction.
+A portable, site-agnostic kiosk platform for displaying live [HamSCI Personal Space Weather Station (PSWS)](https://hamsci.org/psws) data at science outreach venues. The design separates shared base configuration from per-site overrides so that deploying to a new location requires only a new site config. The first deployment is at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum.
 
 ## What it does
 
@@ -17,7 +17,8 @@ A self-hosted [MeshCentral](https://meshcentral.com/) server at `meshcentral.ham
 
 | Path | Contents |
 | ---- | -------- |
-| `kiosk/` | Debian config files, Openbox autostart, systemd units for browser watchdog |
+| `kiosk/base/` | Shared install scripts, systemd unit templates, Openbox config |
+| `kiosk/sites/<name>/` | Per-site config: display URLs, xrandr layout, hostname |
 | `server/` | MeshCentral server setup, `config.json` template, runbook |
 | `docs/` | Architecture decisions, hardware notes, open questions |
 | `ai/` | AI usage log (required per HamSCI/Scranton/NSF/NASA AI policies) |
