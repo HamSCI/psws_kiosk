@@ -171,17 +171,19 @@
             object-fit: contain;
         }
 
-        /* ── HamSCI bottom banner (from PPTX slide master) ── */
+        /* ── HamSCI bottom banner (matches PPTX slide master) ──
+           The banner image (logo + gradient blue) is anchored to the LEFT once,
+           and a CSS gradient matching the banner's right-edge colors fills the rest.
+           Sampled colors: top #425870 → bottom #607a8c, with a 1-row black border line. */
         .hamsci-bottom-banner {
             position: fixed;
             left: 0;
             right: 0;
             bottom: 0;
             height: 10vh;
-            background-image: url('/img/hamsci-banner.png');
-            background-position: left center;
-            background-repeat: repeat-x;
-            background-size: auto 100%;
+            background:
+                url('/img/hamsci-banner.png') no-repeat left center / auto 100%,
+                linear-gradient(to bottom, #425870 0%, #556e82 50%, #607a8c 92%, #000 92%, #000 100%);
             z-index: 5;
         }
 
