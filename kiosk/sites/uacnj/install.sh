@@ -45,8 +45,8 @@ echo "=== Writing Openbox autostart for UACNJ ==="
 # We do NOT run xrandr — reconfiguring HDMI-A-0's position kills its signal
 # on this hardware. Chrome windows are placed at the default virtual coords.
 #
-# Top monitor:    slideshow served by local nginx
-# Bottom monitor: split iframe page — SDR waterfall left, dashboard right
+# Top monitor:    split iframe page — SDR waterfall left, dashboard right (live data at eye level)
+# Bottom monitor: educational slideshow served by local nginx
 SPLIT_URL="http://localhost/split.html?left=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_BOTTOM}")&right=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "${URL_TOP}")"
 
 cat > /home/${KIOSK_USER}/.config/openbox/autostart << EOF
@@ -55,23 +55,23 @@ xset s off -dpms
 xset s noblank
 unclutter -idle 0.5 -root &
 
-# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — split: SDR left, dashboard right
+# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — educational slideshow
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=0,0 --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
         --user-data-dir=/home/${KIOSK_USER}/.chrome-bottom \
-        "${SPLIT_URL}"
+        http://localhost/slides.html
     sleep 5
 done &
 
-# Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — educational slideshow
+# Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — split: SDR left, dashboard right
 while true; do
     google-chrome-stable --kiosk --noerrdialogs --disable-infobars \
         --no-first-run --disable-translate --disable-features=TranslateUI \
         --window-position=${BOTTOM_WIDTH},0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
         --user-data-dir=/home/${KIOSK_USER}/.chrome-top \
-        http://localhost/slides.html
+        "${SPLIT_URL}"
     sleep 5
 done &
 
