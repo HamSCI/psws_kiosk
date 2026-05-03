@@ -12,6 +12,7 @@ All-volunteer 501(c)(3) nonprofit operating one of New Jersey's last truly dark-
 | Top display URL | `https://uacnj.kd3ald.com` |
 | Bottom display URL | `http://vpn.hamsci.org:46005/radio.html` |
 | Display layout | 2× 22" monitors, stacked vertically |
-| Expected output names | TBD — run `xrandr` on installed hardware |
+| Output names (test hardware) | `DP-1` (top, 1920×1080), `HDMI-1` (bottom, 1680×1050) |
+| Output names (production) | TBD — run `xrandr` on site hardware; both expected to support 1920×1080 |
 
 Site-specific Openbox autostart, systemd units, and xrandr settings go here.
