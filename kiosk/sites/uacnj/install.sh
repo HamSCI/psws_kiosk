@@ -34,31 +34,31 @@ BOTTOM_WIDTH="${RES_BOTTOM%%x*}"
 BOTTOM_HEIGHT="${RES_BOTTOM##*x}"
 
 echo "=== Writing Openbox autostart for UACNJ ==="
+# The amdgpu driver defaults to side-by-side: DISPLAY_BOTTOM (DisplayPort-0)
+# at virtual 0,0 and DISPLAY_TOP (HDMI-A-0) at virtual BOTTOM_WIDTH,0.
+# We do NOT run xrandr — reconfiguring HDMI-A-0's position kills its signal
+# on this hardware. Chromium windows are placed at the default virtual coords.
 cat > /home/${KIOSK_USER}/.config/openbox/autostart << EOF
-# Display arrangement — top monitor primary, bottom monitor below it
-xrandr --output ${DISPLAY_TOP}    --primary --mode ${RES_TOP}    --pos 0x0 \
-       --output ${DISPLAY_BOTTOM} --mode ${RES_BOTTOM} --pos 0x${TOP_HEIGHT}
-
 # Kiosk hygiene
 xset s off -dpms
 xset s noblank
 unclutter -idle 0.5 -root &
 
-# Top monitor — PSWS Contesting DX Dashboard
+# Physical bottom monitor (${DISPLAY_BOTTOM}, virtual 0,0) — KA9Q-Web SDR waterfall
 while true; do
     chromium-browser --kiosk --noerrdialogs --disable-infobars \
-        --window-position=0,0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
-        --user-data-dir=/home/${KIOSK_USER}/.chromium-top \
-        ${URL_TOP}
+        --window-position=0,0 --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
+        --user-data-dir=/home/${KIOSK_USER}/.chromium-bottom \
+        ${URL_BOTTOM}
     sleep 5
 done &
 
-# Bottom monitor — KA9Q-Web SDR waterfall
+# Physical top monitor (${DISPLAY_TOP}, virtual ${BOTTOM_WIDTH},0) — PSWS Contesting DX Dashboard
 while true; do
     chromium-browser --kiosk --noerrdialogs --disable-infobars \
-        --window-position=0,${TOP_HEIGHT} --window-size=${BOTTOM_WIDTH},${BOTTOM_HEIGHT} \
-        --user-data-dir=/home/${KIOSK_USER}/.chromium-bottom \
-        ${URL_BOTTOM}
+        --window-position=${BOTTOM_WIDTH},0 --window-size=${TOP_WIDTH},${TOP_HEIGHT} \
+        --user-data-dir=/home/${KIOSK_USER}/.chromium-top \
+        ${URL_TOP}
     sleep 5
 done &
 EOF
