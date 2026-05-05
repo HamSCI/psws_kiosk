@@ -117,3 +117,12 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Layout design, asset management
 - **Human Review Status**: Reviewed and verified
 - **Git Hash**: 31bef5a
+
+## [2026-05-04 23:06 EDT]
+
+- **Tool**: Claude (Anthropic), claude-sonnet-4-6
+- **Session Purpose**: Updated all repo documentation to reflect the kiosk's actual current state after ~24 hours of stable operation. Rewrote the "What it does" section in README.md to describe the slideshow + split-iframe layout (instead of the original two-direct-URL design); added a deployment & updates runbook covering provisioning a new kiosk, updating slideshow content, and remote access via SSH/x11vnc tunnel. Updated CLAUDE.md project overview and repo structure tree to match. In docs/notes.md, recorded the new architecture decisions (Google Chrome over snap Chromium, local nginx serving on-screen content, static monitor layout via xorg.conf.d, x11vnc for live screen view, amdgpu DDX driver), moved resolved questions to a "Resolved" section, and updated the display content table. Per user request, removed details about secrets storage, MeshCentral server infrastructure, monitoring, and Linode hosting (those details belong elsewhere, not in this kiosk repo). Pruned three open questions that were either answered offline or out of scope. Deleted the now-empty server/ directory. Added a LICENSE file (MIT, copyright "Nathaniel A. Frissell and HamSCI Contributors") and a README "License" section that calls out the trademark/logo carve-out. Added a brief AI-disclosure section to README pointing at the AI usage log and governance rules.
+- **Sections/Files Affected**: `README.md` (rewritten What-it-does, new Deployment runbook, new License + AI disclosure sections), `CLAUDE.md` (overview + repo tree), `docs/notes.md` (architecture decisions, open questions pruned, display table), `kiosk/sites/uacnj/README.md` (output names, content description), `LICENSE` (new — MIT), `server/config.json.example` (deleted)
+- **Nature of Contribution**: Documentation, license drafting
+- **Human Review Status**: Reviewed and verified
+- **Git Hash**: 0f6f730
