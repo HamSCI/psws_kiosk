@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository builds and manages a public-display kiosk system for the HamSCI Personal Space Weather Station (PSWS) HF Receiver deployed at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum, with the architecture designed to scale to additional outreach venues. Each kiosk is a BeeLink mini PC running Ubuntu 24.04 LTS with two stacked 22" monitors in fullscreen Chromium: the top monitor shows the PSWS Contesting DX Dashboard (live WSPR/FT8 multi-band spots from the UACNJ receiver), and the bottom monitor shows the KA9Q-Web SDR interface (real-time 0.1–64 MHz HF spectrum waterfall). A self-hosted MeshCentral server at `meshcentral.hamsci.org` provides centralized remote monitoring and management for the entire kiosk fleet.
+This repository builds and manages a public-display kiosk system for the HamSCI Personal Space Weather Station (PSWS) HF Receiver deployed at the United Astronomy Clubs of New Jersey (UACNJ) public observatory museum, with the architecture designed to scale to additional outreach venues. Each kiosk is a BeeLink mini PC running Ubuntu 24.04 LTS with two stacked 22" monitors in fullscreen Google Chrome: the top monitor runs an auto-advancing educational slideshow that explains what visitors are seeing, and the bottom monitor shows a split view of the KA9Q-Web SDR waterfall (left) and the PSWS Contesting DX Dashboard (right). All on-screen content (slideshow + split iframe page) is served from a local nginx on the kiosk itself.
 
 **PI**: Nathaniel A. Frissell, W2NAF — University of Scranton
 **Collaborators**: University of Scranton, New Jersey Institute of Technology, University of Alabama, Case Western Reserve University, Dartmouth College, MIT Haystack Observatory, and others; TAPR, Frankford Radio Club, United Astronomy Clubs of New Jersey (UACNJ), and community volunteers
@@ -11,7 +11,7 @@ This repository builds and manages a public-display kiosk system for the HamSCI 
 
 ## Project Goal
 
-Build a portable, site-agnostic kiosk platform that displays live HamSCI ionospheric data at science outreach venues. The design separates shared base configuration from per-site overrides so that deploying to a new location requires only a new site config — not a new build. The first deployment is at the UACNJ public observatory; all kiosks are centrally managed via a dedicated MeshCentral server isolated from existing HamSCI infrastructure.
+Build a portable, site-agnostic kiosk platform that displays live HamSCI ionospheric data at science outreach venues. The design separates shared base configuration from per-site overrides so that deploying to a new location requires only a new site config — not a new build. The first deployment is at the UACNJ public observatory.
 
 ## Repository Structure
 
@@ -31,10 +31,16 @@ psws_kiosk/
 ├── docs/
 │   └── hamsci-kiosk-project.md   ← architecture decisions and build plans
 ├── kiosk/
-│   ├── base/                     ← shared install scripts, systemd units, Openbox templates
+│   ├── base/
+│   │   ├── install.sh            ← shared OS setup (Chrome, nginx, x11vnc, Openbox, etc.)
+│   │   └── www/split.html        ← generic split-iframe page (URLs via query string)
 │   └── sites/
-│       └── uacnj/                ← UACNJ-specific config (URLs, xrandr layout, hostname)
-└── server/                       ← MeshCentral setup and runbook
+│       └── uacnj/
+│           ├── install.sh        ← per-site config (display layout, URLs, autostart)
+│           ├── README.md         ← site description + monitor info
+│           └── www/
+│               ├── slides.html   ← UACNJ-specific educational slideshow
+│               └── img/          ← HamSCI banner + partner-institution logos
 ```
 
 ## AI Governance
