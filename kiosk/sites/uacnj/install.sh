@@ -21,10 +21,8 @@ RES_TOP="1920x1080"
 DISPLAY_BOTTOM="HDMI-A-0"
 RES_BOTTOM="1920x1080"
 
-URL_TOP="http://192.168.11.202:5000/"
-# TODO: restore to http://vpn.hamsci.org:46005/radio.html once RX888 hardware issue is resolved (requires in-person site visit)
-# Test (home LAN): http://192.168.11.202:8081/radio.html
-URL_BOTTOM="http://192.168.11.202:8081/radio.html"
+URL_TOP="https://uacnj.kd3ald.com/"
+URL_BOTTOM="http://192.168.8.15:8081/radio.html"
 # --------------------------------------------------------------
 
 # Derive the Y offset for the bottom monitor from the top monitor's height

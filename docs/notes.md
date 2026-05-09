@@ -35,5 +35,5 @@ Design decisions, open questions, and session notes for the psws_kiosk project.
 
 Upstream URLs (configured in `kiosk/sites/uacnj/install.sh`):
 
-- **PSWS Contesting DX Dashboard** — production: `https://uacnj.kd3ald.com`; home-LAN test: `http://192.168.11.202:5000/`
-- **KA9Q-Web SDR waterfall** — production target: `http://vpn.hamsci.org:46005/radio.html` (currently blocked by RX888 hardware issue); home-LAN test: `http://192.168.11.202:8081/radio.html`
+- **PSWS Contesting DX Dashboard** — `https://uacnj.kd3ald.com/`
+- **KA9Q-Web SDR waterfall** — `http://192.168.8.15:8081/radio.html` (UACNJ LAN address)
